@@ -288,7 +288,7 @@ export default function App() {
                         aria-label="حذف الذكرى"
                         onClick={() => {
                           if (
-                            !window.confirm("متأكدة إنك عايزة تحذفي الذكرى؟")
+                            !window.confirm("تأكيد حذف الذكرى؟")
                           ) {
                             return;
                           }
@@ -304,7 +304,7 @@ export default function App() {
                   ))}
                   {memories.length === 0 && (
                     <p className="py-6 text-center text-sm text-gray-500">
-                      ❤️ لسه مفيش ذكريات. أضيف أول صورة من فوق
+                      ❤️ لسه مفيش ذكريات. ضيف أول صورة من فوق
                     </p>
                   )}
                 </div>
@@ -557,7 +557,7 @@ export default function App() {
                           className="h-full w-full object-cover"
                         />
                       </div>
-                      <p className="mt-3 text-center text-xs leading-5 text-gray-700">
+                      <p className="mt-3 text-center text-xs leading-5 text-gray-700 whitespace-pre-line">
                         {memory.title}
                       </p>
                     </div>
