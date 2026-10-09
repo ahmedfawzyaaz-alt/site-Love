@@ -201,7 +201,7 @@ export default function App() {
 
                   <label className="block text-sm font-medium text-gray-700">
                     اختار صورة
-                    <input
+                    <textarea
                       type="file"
                       accept="image/*"
                       onChange={async (event) => {
@@ -358,7 +358,7 @@ export default function App() {
                         أنني إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
                       </span>
 
-                      <p className="my-8 ">
+                      <p className="my-8">
                         قبلت بكِ وزوجتك نفسي لبقية أنفاس حياتي و سأعيش معك العمر
                         كله و أكون لكِ سنداً و حامياً في السراء والضراء و في
                         أعنف المعارك محاربً لا يخشى شيئ إلا الله، لن أترك يديكي
@@ -511,7 +511,7 @@ export default function App() {
                             goal.completed
                               ? "bg-pink-100"
                               : "bg-white/60 hover:bg-pink-50"
-                          }`}
+                          }`} dir="rtl"
                         >
                           <div
                             className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${
@@ -542,7 +542,7 @@ export default function App() {
                   ✨ ذكرياتنا مع بعض
                 </p>
 
-                <div className="grid grid-cols-1 gap-3 my-5">
+                <div className="grid grid-cols-1 gap-3 my-7">
                   {memories.map((memory) => (
                     <div
                       key={memory.id}
