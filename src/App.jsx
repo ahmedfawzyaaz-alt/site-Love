@@ -184,7 +184,7 @@ export default function App() {
                   لوحة الذكريات
                 </p>
                 <h1 className="mb-6 mt-2 text-2xl font-bold text-gray-800">
-                  اضافة صورة وعنوان جديد📸
+                📸  اضافة صورة وعنوان جديد
                 </h1>
 
                 <form onSubmit={addMemory} className="mb-8 space-y-4">
