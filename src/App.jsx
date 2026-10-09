@@ -555,7 +555,7 @@ export default function App() {
                           className="h-full w-full object-cover"
                         />
                       </div>
-                      <p className="mt-3 text-center text-xl leading-5 text-gray-700 whitespace-pre-line">
+                      <p className="mt-3 text-center text-lg leading-5 text-gray-700 whitespace-pre-line">
                         {memory.title}
                       </p>
                     </div>
