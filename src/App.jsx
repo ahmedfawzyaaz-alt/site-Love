@@ -542,7 +542,7 @@ export default function App() {
                   ✨ ذكرياتنا مع بعض
                 </p>
 
-                <div className="grid grid-cols-1 gap-3">
+                <div className="grid grid-cols-1 gap-3 my-5">
                   {memories.map((memory) => (
                     <div
                       key={memory.id}
