@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { IoHeartSharp } from "react-icons/io5";
 import { Bounce, toast } from "react-toastify";
+import { FaCookie } from "react-icons/fa";
 
 const initialMemories = [];
 
@@ -73,11 +74,11 @@ export default function App() {
     }
 
     return [
-      { id: 1, text: "إننا نتجوز 💍", completed: false },
-      { id: 2, text: "إننا نطلع عمرة سوا 🕋", completed: false },
-      { id: 3, text: "إننا نسافر سوا ✈️", completed: false },
-      { id: 4, text: "إننا نتعلم لغة سوا 🌍", completed: false },
-      { id: 5, text: "إن يكون عندنا بيبي 👶🏻", completed: false },
+      { id: 1, text: "💍 إننا نتجوز", completed: false },
+      { id: 2, text: "🕋 إننا نطلع عمرة سوا", completed: false },
+      { id: 3, text: "✈️ إننا نسافر سوا", completed: false },
+      { id: 4, text: "🌍 إننا نتعلم لغة سوا", completed: false },
+      { id: 5, text: "👶🏻 إن يكون عندنا بيبي", completed: false },
     ];
   });
 
@@ -302,7 +303,7 @@ export default function App() {
                   ))}
                   {memories.length === 0 && (
                     <p className="py-6 text-center text-sm text-gray-500">
-                      لسه مفيش ذكريات. أضيف أول صورة من فوق ❤️
+                      ❤️ لسه مفيش ذكريات. أضيف أول صورة من فوق
                     </p>
                   )}
                 </div>
@@ -317,7 +318,7 @@ export default function App() {
                   </h3>
 
                   <p className="text-sm text-gray-700">
-                   🤏❤️ كل اللي هتشوفيه نبذه صغننه عن حبي ليكي 
+                    🤏❤️ كل اللي هتشوفيه نبذه صغننه عن حبي ليكي
                   </p>
                 </div>
 
@@ -330,9 +331,8 @@ export default function App() {
                     عملتلك المكان ده عشان يحفظ أجمل لحظاتنا وصورنا وكلامنا،
                     <p>
                       ونرجعله دايماً نفتكر ونبتسم. إنت أجمل حاجة حصلتلي، وربنا
-                      يديمك
+                      يديمك في حياتي يا روحي
                     </p>
-                    ❤️ في حياتي يا روحي
                   </h3>
 
                   <span>🥰❤️</span>
@@ -352,10 +352,31 @@ export default function App() {
 
                     <h3 className="my-2.5">اليوم اللي قلتلك فيه أحبك</h3>
 
-                    <span className="text-sm text-gray-700">
-                      تلات كلمات قولتهالك وحسيت إن الدنيا اتغيرت.. من يومها إنت
-                      معايا في كل حاجة
-                    </span>
+                    <p className="text-sm text-gray-700 flex flex-col leading-9  ">
+                      <span>
+                        أهم يوم ف حياتي و لحظة دخول السرور قلبي و يومها عرفت
+                        أنني إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
+                      </span>
+
+                      <p className="my-8 ">
+                        قبلت بكِ وزوجتك نفسي لبقية أنفاس حياتي و سأعيش معك العمر
+                        كله و أكون لكِ سنداً و حامياً في السراء والضراء و في
+                        أعنف المعارك محاربً لا يخشى شيئ إلا الله، لن أترك يديكي
+                        أبداً و سوف أفعل كل ما في وسعى لأفوز بكِ و أنالكِ يا
+                        عمري الماضي والحاضر و المستقبل، قلتها و سأقولها ثانية،
+                        سأفوز بكِ و سأفعل المستحيل لأنالك يا حبيبة عمري و فتاة
+                        أحلامي، أحبك من كل أعماق أعماق أعماق قلبي يا آنيسه روحي
+                        <p>
+                          و شريان قلبي النابض، بكِ أستآنث وبكِ أقوى وبتشجيعك
+                          اكون ما اريد و تريدي
+                          <p>🥹🌸🍪</p>
+                        </p>
+                        <p className="mt-5">
+                          {" "}
+                          🥹💍🫂♥️♥️- أحبكك بشدة يا زوجتي العزيزة
+                        </p>
+                      </p>
+                    </p>
                   </div>
                   <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
                     <div className="my-2">
@@ -439,7 +460,7 @@ export default function App() {
                     </h2>
 
                     <p className="text-xs text-gray-500 mt-2">
-                      مش مجرد أحلام.. دي حاجات نفسي نعيشها سوا ❤️
+                      ❤️ مش مجرد أحلام.. دي حاجات نفسي نعيشها سوا
                     </p>
 
                     {/* Progress */}
@@ -518,7 +539,7 @@ export default function App() {
                 </div>
 
                 <p className="my-5 text-2xl font-semibold">
-                  ذكرياتنا مع بعض ✨
+                  ✨ ذكرياتنا مع بعض
                 </p>
 
                 <div className="grid grid-cols-1 gap-3">
@@ -552,7 +573,7 @@ export default function App() {
               </p>
 
               <h1 className="text-xl font-semibold text-gray-800">
-                أنتِ أجملُ صدفةٍ في حياتي.♥️🌸
+                ♥️🌸 أنتِ أجملُ صدفةٍ في حياتي.
               </h1>
 
               <p className="text-sm text-gray-400 mt-3">
