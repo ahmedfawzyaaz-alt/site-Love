@@ -168,15 +168,17 @@ export default function App() {
       >
         {unlocked ? (
           <div className="grid grid-cols-12">
-            <div className="col-span-12 flex justify-end pt-5">
-              <button
-                type="button"
-                onClick={() => setIsDashboard((current) => !current)}
-                className="rounded-full bg-white/80 px-5 py-2 text-sm font-semibold text-pink-600 shadow-sm hover:bg-white"
-              >
-                {isDashboard ? "العودة للذكريات ←" : "إدارة الصور ✨"}
-              </button>
-            </div>
+            {isDashboard && (
+              <div className="col-span-12 flex justify-end pt-5">
+                <button
+                  type="button"
+                  onClick={() => setIsDashboard(false)}
+                  className="rounded-full bg-white/80 px-5 py-2 text-sm font-semibold text-pink-600 shadow-sm hover:bg-white"
+                >
+                  العودة للذكريات ←
+                </button>
+              </div>
+            )}
 
             {isDashboard ? (
               <div className="col-span-12 mx-auto my-5 w-full max-w-2xl rounded-3xl bg-white/80 p-5 text-right shadow-lg shadow-pink-100/50 sm:p-8">
@@ -184,7 +186,7 @@ export default function App() {
                   لوحة الذكريات
                 </p>
                 <h1 className="mb-6 mt-2 text-2xl font-bold text-gray-800">
-                📸  اضافة صورة وعنوان جديد
+                  📸 اضافة صورة وعنوان جديد
                 </h1>
 
                 <form onSubmit={addMemory} className="mb-8 space-y-4">
@@ -545,6 +547,18 @@ export default function App() {
                 <p className="my-5 text-2xl font-semibold " dir="trl">
                   ✨ ذكرياتنا مع بعض
                 </p>
+
+                {!isDashboard && (
+                  <div className="flex justify-end mb-4 mt-3">
+                    <button
+                      type="button"
+                      onClick={() => setIsDashboard(true)}
+                      className="rounded-full bg-white/80 px-5 py-2 text-sm font-semibold text-pink-600 shadow-sm hover:bg-white"
+                    >
+                      إدارة الصور ✨
+                    </button>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-1 gap-3 my-7">
                   {memories.map((memory) => (
