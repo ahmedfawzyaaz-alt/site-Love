@@ -311,11 +311,12 @@ export default function App() {
               </div>
             ) : (
               <div className="col-span-12 ">
-                <div className="card w-auto bg-white/70 p-4 gap-3 my-3 rounded-3xl shadow flex flex-col flex-wrap mx-auto backdrop-blur-sm shadow-pink-100/50 px-7 py-8">
-                  <h3>
+                <div className="card w-auto bg-white/70 p-4 gap-3 my-3 rounded-3xl shadow flex flex-col flex-wrap mx-auto backdrop-blur-sm shadow-pink-100/50 px-7 py-3">
+                <h2 dir="rtl" className="mb-3 text-pink-600">الي حبيبتي ❤</h2>
+                  <h3 dir="rtl">
                     دي هدية صغيرة ليكي يا كوكيز عشان نملاها بصورنا طول أيامنا
                     اللي
-                    <p> 🍪♥️♾️جايه وأحنا مع بعض يا حبيبتي </p>
+                     جايه وأحنا مع بعض يا حبيبتي 🍪♥️♾️
                   </h3>
 
                   <p className="text-sm text-gray-700">
