@@ -538,7 +538,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <p className="my-5 text-2xl font-semibold">
+                <p className="my-5 text-2xl font-semibold " dir="trl">
                   ✨ ذكرياتنا مع بعض
                 </p>
 
