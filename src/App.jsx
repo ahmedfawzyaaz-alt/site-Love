@@ -190,7 +190,7 @@ export default function App() {
                 <form onSubmit={addMemory} className="mb-8 space-y-4">
                   <label className="block text-sm font-medium text-gray-700">
                     عنوان الصورة
-                    <input
+                    <textarea
                       value={newTitle}
                       onChange={(event) => setNewTitle(event.target.value)}
                       maxLength={160}
@@ -201,7 +201,7 @@ export default function App() {
 
                   <label className="block text-sm font-medium text-gray-700">
                     اختار صورة
-                    <textarea
+                    <input
                       type="file"
                       accept="image/*"
                       onChange={async (event) => {
