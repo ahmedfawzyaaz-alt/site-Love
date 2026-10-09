@@ -74,11 +74,11 @@ export default function App() {
     }
 
     return [
-      { id: 1, text: "💍 إننا نتجوز", completed: false },
-      { id: 2, text: "🕋 إننا نطلع عمرة سوا", completed: false },
-      { id: 3, text: "✈️ إننا نسافر سوا", completed: false },
-      { id: 4, text: "🌍 إننا نتعلم لغة سوا", completed: false },
-      { id: 5, text: "👶🏻 إن يكون عندنا بيبي", completed: false },
+      { id: 1, text: "💍  نتجوز", completed: false },
+      { id: 2, text: "🕋  نطلع عمرة سوا", completed: false },
+      { id: 3, text: "✈️  نسافر سوا", completed: false },
+      { id: 4, text: "🌍  نتعلم لغة سوا", completed: false },
+      { id: 5, text: "👶🏻  يكون عندنا بيبي", completed: false },
     ];
   });
 
@@ -223,7 +223,7 @@ export default function App() {
                             "Could not read the selected photo:",
                             error,
                           );
-                          toast.error("تعذر فتح الصورة. اختاري صورة تانية.");
+                          toast.error("تعذر فتح الصورة. اختار صورة تانية.");
                         }
                       }}
                       className="mt-2 block w-full rounded-2xl border border-pink-100 bg-white p-3 text-sm file:mr-3 file:rounded-full file:border-0 file:bg-pink-100 file:px-4 file:py-2 file:text-pink-700"
@@ -557,7 +557,7 @@ export default function App() {
                           className="h-full w-full object-cover"
                         />
                       </div>
-                      <p className="mt-3 text-center text-xs leading-5 text-gray-700 whitespace-pre-line">
+                      <p className="mt-3 text-center text-xl leading-5 text-gray-700 whitespace-pre-line">
                         {memory.title}
                       </p>
                     </div>
