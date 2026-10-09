@@ -108,8 +108,8 @@ export default function App() {
     }
 
     const saved = saveMemories([
-      { id: Date.now(), image: newPhoto, title: newTitle.trim() },
       ...memories,
+      { id: Date.now(), image: newPhoto, title: newTitle.trim() },
     ]);
     if (saved) {
       setNewTitle("");
@@ -190,8 +190,8 @@ export default function App() {
                 <form onSubmit={addMemory} className="mb-8 space-y-4">
                   <label className="block text-sm font-medium text-gray-700">
                     عنوان الصورة
-                    <textarea 
-                    rows={4}
+                    <textarea
+                      rows={4}
                       value={newTitle}
                       onChange={(event) => setNewTitle(event.target.value)}
                       maxLength={160}
@@ -512,7 +512,8 @@ export default function App() {
                             goal.completed
                               ? "bg-pink-100"
                               : "bg-white/60 hover:bg-pink-50"
-                          }`} dir="rtl"
+                          }`}
+                          dir="rtl"
                         >
                           <div
                             className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${
