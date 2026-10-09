@@ -74,11 +74,11 @@ export default function App() {
     }
 
     return [
-      { id: 1, text: "💍  نتجوز", completed: false },
-      { id: 2, text: "🕋  نطلع عمرة سوا", completed: false },
-      { id: 3, text: "✈️  نسافر سوا", completed: false },
-      { id: 4, text: "🌍  نتعلم لغة سوا", completed: false },
-      { id: 5, text: "👶🏻  يكون عندنا بيبي", completed: false },
+      { id: 1, text: "  نتجوز💍", completed: false },
+      { id: 2, text: " نطلع عمرة سوا 🕋 ", completed: false },
+      { id: 3, text: "  نسافر سوا ✈️", completed: false },
+      { id: 4, text: "  نتعلم لغة سوا 🌍", completed: false },
+      { id: 5, text: "  يكون عندنا بيبي 👶🏻", completed: false },
     ];
   });
 
@@ -287,9 +287,7 @@ export default function App() {
                         type="button"
                         aria-label="حذف الذكرى"
                         onClick={() => {
-                          if (
-                            !window.confirm("تأكيد حذف الذكرى؟")
-                          ) {
+                          if (!window.confirm("تأكيد حذف الذكرى؟")) {
                             return;
                           }
                           saveMemories(
