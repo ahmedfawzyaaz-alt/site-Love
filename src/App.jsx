@@ -57,16 +57,13 @@ export default function App() {
   const [newTitle, setNewTitle] = useState("");
   const [newPhoto, setNewPhoto] = useState("");
   const [memories, setMemories] = useState(() => {
-
-
-    
     const saved = localStorage.getItem("memories");
     return saved ? JSON.parse(saved) : initialMemories;
   });
 
   useEffect(() => {
-  localStorage.setItem("memories", JSON.stringify(memories));
-}, [memories]);
+    localStorage.setItem("memories", JSON.stringify(memories));
+  }, [memories]);
 
   const [goals, setGoals] = useState(() => {
     const saved = localStorage.getItem("goals");
@@ -316,11 +313,11 @@ export default function App() {
                   <h3>
                     دي هدية صغيرة ليكي يا كوكيز عشان نملاها بصورنا طول أيامنا
                     اللي
-                    <p>جايه وأحنا مع بعض يا حبيبتي🍪♥️♾️</p>
+                    <p> 🍪♥️♾️جايه وأحنا مع بعض يا حبيبتي </p>
                   </h3>
 
                   <p className="text-sm text-gray-700">
-                    كل اللي هتشوفيه نبذه صغننه عن حبي ليكي 🤏❤️
+                   🤏❤️ كل اللي هتشوفيه نبذه صغننه عن حبي ليكي 
                   </p>
                 </div>
 
@@ -335,7 +332,7 @@ export default function App() {
                       ونرجعله دايماً نفتكر ونبتسم. إنت أجمل حاجة حصلتلي، وربنا
                       يديمك
                     </p>
-                    في حياتي يروحي ❤️
+                    ❤️ في حياتي يا روحي
                   </h3>
 
                   <span>🥰❤️</span>
@@ -349,7 +346,7 @@ export default function App() {
                   <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
                     <div className="my-2">
                       <span className="px-3 rounded-2xl bg-pink-500 text-white">
-                        ?? / ?? / ????
+                        01/09/2026
                       </span>
                     </div>
 
@@ -363,7 +360,7 @@ export default function App() {
                   <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
                     <div className="my-2">
                       <span className="px-3 rounded-2xl bg-pink-500 text-white">
-                        ?? / ?? / ????
+                        30/10/2026
                       </span>
                     </div>
 
@@ -392,7 +389,7 @@ export default function App() {
 
                     <div className="mt-3">
                       <span className="text-gray-600 text-sm">
-                        محتاجش أتمنى حاجة.. إنتي كل اللي كنت بتمناه 🤍
+                        ♥️ مش محتاج أتمنى حاجة تاني.. إنتي كل اللي بتمناه
                       </span>
                     </div>
                   </div>
@@ -423,7 +420,7 @@ export default function App() {
 
                     <div className="mt-3">
                       <span className="text-gray-600 text-sm">
-                        قبلك كنت عاايش.. بعدك بقيت أحس 🤍
+                        🌸🍪🥺أحببتُ الحياةَ حين أحببتكِ
                       </span>
                     </div>
                   </div>
