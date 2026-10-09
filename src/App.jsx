@@ -191,6 +191,7 @@ export default function App() {
                   <label className="block text-sm font-medium text-gray-700">
                     عنوان الصورة
                     <textarea 
+                    rows={4}
                       value={newTitle}
                       onChange={(event) => setNewTitle(event.target.value)}
                       maxLength={160}
