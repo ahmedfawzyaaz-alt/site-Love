@@ -334,7 +334,11 @@ export default function App() {
                     </p>
                   </h3>
 
-                  <span>🥰❤️</span>
+                  <p className="my-3">🥰❤️</p>
+
+                  <span className="font-serif text-pink-800">
+                    " You 'll Never Walk Alone " 👫♥️
+                  </span>
                 </div>
 
                 <div className="my-3">
@@ -349,7 +353,7 @@ export default function App() {
                       </span>
                     </div>
 
-                    <h3 className="my-2.5">اليوم اللي قلتلك فيه أحبك</h3>
+                    <h3 className="my-2.5">اليوم اللي قلتلك فيه بحبك</h3>
 
                     <p className="text-sm text-gray-700 flex flex-col leading-9  ">
                       <span>
