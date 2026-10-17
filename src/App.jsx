@@ -625,7 +625,7 @@ export default function App() {
               </p>
 
               <h1 className="text-xl font-semibold text-gray-800">
-                ♥️🌸 أنتِ أجملُ صدفةٍ في حياتي.
+                ♥️🌸 انتي أجملُ صدفةٍ في حياتي.
               </h1>
 
               <p className="text-sm text-gray-400 mt-3">
