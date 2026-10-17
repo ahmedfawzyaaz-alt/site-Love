@@ -574,11 +574,11 @@ export default function App() {
                       key={memory.id}
                       className="rounded-3xl bg-white/70 p-2.5 shadow-sm shadow-pink-100 backdrop-blur-sm"
                     >
-                      <div className="h-90 overflow-hidden rounded-2xl">
+                      <div className="w-full overflow-hidden rounded-2xl">
                         <img
                           src={memory.image}
                           alt={memory.title}
-                          className="h-full w-full object-contain"
+                          className="block h-auto w-full object-contain"
                         />
                       </div>
                       <p className="mt-3 text-center text-lg leading-5 text-gray-700 whitespace-pre-line">
