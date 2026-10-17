@@ -367,8 +367,8 @@ export default function App() {
 
                     <p className="text-sm text-gray-700 flex flex-col leading-9  ">
                       <span>
-                        أهم يوم ف حياتي و لحظة دخول السرور قلبي و يومها عرفت
-                        أني إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
+                        أهم يوم ف حياتي و لحظة دخول السرور قلبي و يومها عرفت أني
+                        إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
                       </span>
 
                       <p className="my-8">
@@ -578,7 +578,7 @@ export default function App() {
                         <img
                           src={memory.image}
                           alt={memory.title}
-                          className="h-full w-full object-cover"
+                          className="h-full w-full object-contain"
                         />
                       </div>
                       <p className="mt-3 text-center text-lg leading-5 text-gray-700 whitespace-pre-line">
