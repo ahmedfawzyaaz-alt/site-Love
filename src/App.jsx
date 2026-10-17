@@ -64,6 +64,22 @@ export default function App() {
   });
 
   useEffect(() => {
+    const stopAudio = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+
+    window.addEventListener("pagehide", stopAudio);
+
+    return () => {
+      window.removeEventListener("pagehide", stopAudio);
+      stopAudio();
+    };
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("memories", JSON.stringify(memories));
   }, [memories]);
 
