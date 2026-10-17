@@ -612,7 +612,7 @@ export default function App() {
               onSubmit={(e) => {
                 e.preventDefault();
 
-                if (password === "01-09-26") {
+                if (password === "01-09-2026") {
                   setUnlocked(true);
                   audioRef.current?.play().catch((error) => {
                     console.error("تعذر تشغيل الأغنية:", error);
