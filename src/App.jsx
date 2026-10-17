@@ -79,10 +79,12 @@ export default function App() {
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
     window.addEventListener("pagehide", stopAudio);
+    window.addEventListener("blur", stopAudio);
 
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("pagehide", stopAudio);
+      window.removeEventListener("blur", stopAudio);
       stopAudio();
     };
   }, []);
