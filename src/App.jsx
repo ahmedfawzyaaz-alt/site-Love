@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import { IoHeartSharp } from "react-icons/io5";
 import { Bounce, toast } from "react-toastify";
@@ -53,6 +53,7 @@ export default function App() {
   );
 
   const [password, setPassword] = useState("");
+  const audioRef = useRef(null);
   const [hearts, setHearts] = useState([]);
   const [isDashboard, setIsDashboard] = useState(false);
   const [newTitle, setNewTitle] = useState("");
@@ -140,6 +141,11 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-pink-50 via-rose-50 to-pink-100 px-6 overflow-hidden">
+      <audio
+        ref={audioRef}
+        src="/audio/Tamer Ashour - Esht Maak Hekayat _ Official Music Video _ تامر عاشور - عشت معاك حكايات(M4A_128K).mp3"
+        loop
+      />
       {/* Hearts */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         {hearts.map((heart) => (
@@ -312,11 +318,12 @@ export default function App() {
             ) : (
               <div className="col-span-12 ">
                 <div className="card w-auto bg-white/70 p-4 gap-3 my-3 rounded-3xl shadow flex flex-col flex-wrap mx-auto backdrop-blur-sm shadow-pink-100/50 px-7 py-3">
-                <h2 dir="rtl" className="mb-3 text-pink-600">الي حبيبتي ❤</h2>
+                  <h2 dir="rtl" className="mb-3 text-pink-600">
+                    الي حبيبتي ❤
+                  </h2>
                   <h3 dir="rtl">
                     دي هدية صغيرة ليكي يا كوكيز عشان نملاها بصورنا طول أيامنا
-                    اللي
-                     جايه وأحنا مع بعض يا حبيبتي 🍪♥️♾️
+                    اللي جايه وأحنا مع بعض يا حبيبتي 🍪♥️♾️
                   </h3>
 
                   <p className="text-sm text-gray-700">
@@ -361,7 +368,7 @@ export default function App() {
                     <p className="text-sm text-gray-700 flex flex-col leading-9  ">
                       <span>
                         أهم يوم ف حياتي و لحظة دخول السرور قلبي و يومها عرفت
-                        أنني إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
+                        أني إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
                       </span>
 
                       <p className="my-8">
@@ -607,6 +614,9 @@ export default function App() {
 
                 if (password === "01-09-26") {
                   setUnlocked(true);
+                  audioRef.current?.play().catch((error) => {
+                    console.error("تعذر تشغيل الأغنية:", error);
+                  });
 
                   toast.success("Two Hearts, One Beautiful Story", {
                     position: "top-right",
@@ -619,8 +629,6 @@ export default function App() {
                     theme: "light",
                     transition: Bounce,
                   });
-
-                  localStorage.setItem("unlocked", JSON.stringify(true));
                 } else {
                   alert("Incorrect password. Please try again.");
                 }
@@ -641,11 +649,6 @@ export default function App() {
               <button
                 type="submit"
                 className="w-full mt-8 py-3 rounded-full bg-rose-400 text-white font-medium shadow-md shadow-rose-200 hover:bg-rose-500 hover:shadow-lg transition-all duration-300 cursor-pointer"
-                onClick={() => {
-                  if (password === "01-09-2026") {
-                    setUnlocked(true);
-                  }
-                }}
               >
                 Unlock 🔓
               </button>
