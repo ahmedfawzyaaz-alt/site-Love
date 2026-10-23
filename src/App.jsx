@@ -365,7 +365,7 @@ export default function App() {
                   <h3 className="text-sm my-4 text-gray-800">
                     عملتلك المكان ده عشان يحفظ أجمل لحظاتنا وصورنا وكلامنا،
                     <p>
-                      ونرجعله دايماً نفتكر ونبتسم. إنت أجمل حاجة حصلتلي، وربنا
+                      ونرجعله دايماً نفتكر ونبتسم إنتي أجمل حاجة حصلتلي، وربنا
                       يديمك في حياتي يا روحي
                     </p>
                   </h3>
@@ -393,7 +393,7 @@ export default function App() {
 
                     <p className="text-sm text-gray-700 flex flex-col leading-9  ">
                       <span>
-                        أهم يوم ف حياتي و لحظة دخول السرور قلبي و يومها عرفت أني
+                        أهم يوم ف حياتي و لحظة دخول السرور قلبي و يومها عرفت إني
                         إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
                       </span>
 
@@ -420,7 +420,7 @@ export default function App() {
                   <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
                     <div className="my-2">
                       <span className="px-3 rounded-2xl bg-pink-500 text-white">
-                        30/10/2026
+                        01-11-2026
                       </span>
                     </div>
 
@@ -454,6 +454,24 @@ export default function App() {
                     </div>
                   </div>
 
+                  <div className=" bg-white/70 p-4 backdrop-blur-sm rounded-3xl">
+                    <div className="overflow-hidden">
+                      <img
+                        src="./assets/WhatsApp Image 2026-10-23 at 10.27.57 PM.jpg"
+                        alt=""
+                        className="h-auto w-full object-contain rounded-2xl"
+                      />
+                    </div>
+
+                    <div className="mt-3" dir="rtl">
+                      <h3>
+                        لم تكن مجرد رسائل، بل كانت قطعًا صغيرة من حكاية أحب أن
+                        تستمر إلى الأبد و تحمل حبًا أكبر من أن تصفه
+                        الكلمات.♥️♾️🫂
+                      </h3>
+                    </div>
+                  </div>
+
                   <div className="flex justify-center gap-5">
                     <div className="w-25 ">
                       <img src="./assets/sticker.png" alt="" />
@@ -466,7 +484,7 @@ export default function App() {
                   <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
                     <div className="my-2">
                       <span className="px-3 rounded-2xl bg-pink-500 text-white">
-                        30/10/2026
+                        01-11-2026
                       </span>
                     </div>
 
