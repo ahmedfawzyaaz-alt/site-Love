@@ -3,6 +3,7 @@ import "./App.css";
 import { IoHeartSharp } from "react-icons/io5";
 import { Bounce, toast } from "react-toastify";
 import { FaCookie } from "react-icons/fa";
+import ScrollY from "./components/scrollY/ScrollY";
 
 const initialMemories = [];
 
@@ -166,545 +167,554 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-pink-50 via-rose-50 to-pink-100 px-6 overflow-hidden">
-      <audio
-        ref={audioRef}
-        src="/audio/Tamer Ashour - Esht Maak Hekayat _ Official Music Video _ تامر عاشور - عشت معاك حكايات(M4A_128K).mp3"
-        loop
-      />
-      {/* Hearts */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {hearts.map((heart) => (
-          <span
-            key={heart.id}
-            className="absolute top-[-30px] animate-fall"
-            style={{
-              left: `${heart.left}%`,
-              fontSize: `${heart.size}px`,
-              animationDuration: `${heart.duration}s`,
-            }}
-          >
-            <IoHeartSharp className="text-[red]" />
-            🌸🍪
-          </span>
-        ))}
-      </div>
+    <>
+      <div className="relative min-h-screen bg-gradient-to-b from-pink-50 via-rose-50 to-pink-100 px-6 overflow-hidden">
+        <audio
+          ref={audioRef}
+          src="/audio/Tamer Ashour - Esht Maak Hekayat _ Official Music Video _ تامر عاشور - عشت معاك حكايات(M4A_128K).mp3"
+          loop
+        />
+        {/* Hearts */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+          {hearts.map((heart) => (
+            <span
+              key={heart.id}
+              className="absolute top-[-30px] animate-fall"
+              style={{
+                left: `${heart.left}%`,
+                fontSize: `${heart.size}px`,
+                animationDuration: `${heart.duration}s`,
+              }}
+            >
+              <IoHeartSharp className="text-[red]" />
+              🌸🍪
+            </span>
+          ))}
+        </div>
 
-      {/* Content */}
-      <div
-        className={`relative z-10 w-full text-center ${
-          unlocked
-            ? "relative z-10 w-full flex justify-center"
-            : "relative z-10 w-full min-h-screen flex items-center justify-center"
-        }`}
-      >
-        {unlocked ? (
-          <div className="grid grid-cols-12">
-            {isDashboard && (
-              <div className="col-span-12 flex justify-end pt-5">
-                <button
-                  type="button"
-                  onClick={() => setIsDashboard(false)}
-                  className="rounded-full bg-white/80 px-5 py-2 text-sm font-semibold text-pink-600 shadow-sm hover:bg-white"
-                >
-                  العودة للذكريات ←
-                </button>
-              </div>
-            )}
-
-            {isDashboard ? (
-              <div className="col-span-12 mx-auto my-5 w-full max-w-2xl rounded-3xl bg-white/80 p-5 text-right shadow-lg shadow-pink-100/50 sm:p-8">
-                <p className="text-sm font-semibold text-pink-500">
-                  لوحة الذكريات
-                </p>
-                <h1 className="mb-6 mt-2 text-2xl font-bold text-gray-800">
-                  📸 اضافة صورة وعنوان جديد
-                </h1>
-
-                <form onSubmit={addMemory} className="mb-8 space-y-4">
-                  <label className="block text-sm font-medium text-gray-700">
-                    عنوان الصورة
-                    <textarea
-                      rows={4}
-                      value={newTitle}
-                      onChange={(event) => setNewTitle(event.target.value)}
-                      maxLength={160}
-                      placeholder="اكتب عنوان الذكرى..."
-                      className="mt-2 w-full rounded-2xl border border-pink-100 bg-white px-4 py-3 outline-none focus:border-pink-300"
-                    />
-                  </label>
-
-                  <label className="block text-sm font-medium text-gray-700">
-                    اختار صورة
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={async (event) => {
-                        const file = event.target.files?.[0];
-                        if (!file) return;
-                        setNewPhoto("");
-                        if (file.size > 10 * 1024 * 1024) {
-                          toast.error(
-                            "حجم الصورة لازم يكون أقل من 10 ميجابايت.",
-                          );
-                          event.target.value = "";
-                          return;
-                        }
-                        try {
-                          setNewPhoto(await resizePhoto(file));
-                        } catch (error) {
-                          console.error(
-                            "Could not read the selected photo:",
-                            error,
-                          );
-                          toast.error("تعذر فتح الصورة. اختار صورة تانية.");
-                        }
-                      }}
-                      className="mt-2 block w-full rounded-2xl border border-pink-100 bg-white p-3 text-sm file:mr-3 file:rounded-full file:border-0 file:bg-pink-100 file:px-4 file:py-2 file:text-pink-700"
-                    />
-                  </label>
-
-                  {newPhoto && (
-                    <img
-                      src={newPhoto}
-                      alt="معاينة الصورة الجديدة"
-                      className="h-48 w-full rounded-2xl object-cover"
-                    />
-                  )}
-
+        {/* Content */}
+        <div
+          className={`relative z-10 w-full text-center ${
+            unlocked
+              ? "relative z-10 w-full flex justify-center"
+              : "relative z-10 w-full min-h-screen flex items-center justify-center"
+          }`}
+        >
+          {unlocked ? (
+            <div className="grid grid-cols-12">
+              {isDashboard && (
+                <div className="col-span-12 flex justify-end pt-5">
                   <button
-                    type="submit"
-                    className="w-full rounded-full bg-pink-500 py-3 font-semibold text-white transition hover:bg-pink-600"
+                    type="button"
+                    onClick={() => setIsDashboard(false)}
+                    className="rounded-full bg-white/80 px-5 py-2 text-sm font-semibold text-pink-600 shadow-sm hover:bg-white"
                   >
-                    إضافة للذكريات ＋
+                    العودة للذكريات ←
                   </button>
-                  <p className="text-xs text-gray-500">
-                    الصور بتتصغر تلقائيًا وبتتحفظ على نفس الجهاز والمتصفح.
-                  </p>
-                </form>
+                </div>
+              )}
 
-                <h2 className="mb-4 text-lg font-bold text-gray-800">
-                  تعديل الذكريات الحالية ({memories.length})
-                </h2>
-                <div className="space-y-3">
-                  {memories.map((memory) => (
-                    <div
-                      key={memory.id}
-                      className="flex items-center gap-3 rounded-2xl bg-pink-50/70 p-3"
-                    >
-                      <img
-                        src={memory.image}
-                        alt=""
-                        className="h-16 w-16 shrink-0 rounded-xl object-cover"
-                      />
-                      <input
-                        aria-label="عنوان الذكرى"
-                        defaultValue={memory.title}
+              {isDashboard ? (
+                <div className="col-span-12 mx-auto my-5 w-full max-w-2xl rounded-3xl bg-white/80 p-5 text-right shadow-lg shadow-pink-100/50 sm:p-8">
+                  <p className="text-sm font-semibold text-pink-500">
+                    لوحة الذكريات
+                  </p>
+                  <h1 className="mb-6 mt-2 text-2xl font-bold text-gray-800">
+                    📸 اضافة صورة وعنوان جديد
+                  </h1>
+
+                  <form onSubmit={addMemory} className="mb-8 space-y-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      عنوان الصورة
+                      <textarea
+                        rows={4}
+                        value={newTitle}
+                        onChange={(event) => setNewTitle(event.target.value)}
                         maxLength={160}
-                        onBlur={(event) => {
-                          const title = event.target.value.trim();
-                          if (!title) {
-                            event.target.value = memory.title;
-                            toast.error("عنوان الذكرى ماينفعش يكون فاضي.");
-                            return;
-                          }
-                          if (title === memory.title) return;
-                          saveMemories(
-                            memories.map((item) =>
-                              item.id === memory.id ? { ...item, title } : item,
-                            ),
-                          );
-                        }}
-                        className="min-w-0 flex-1 rounded-xl border border-pink-100 bg-white px-3 py-2 text-sm outline-none focus:border-pink-300"
+                        placeholder="اكتب عنوان الذكرى..."
+                        className="mt-2 w-full rounded-2xl border border-pink-100 bg-white px-4 py-3 outline-none focus:border-pink-300"
                       />
-                      <button
-                        type="button"
-                        aria-label="حذف الذكرى"
-                        onClick={() => {
-                          if (!window.confirm("تأكيد حذف الذكرى؟")) {
+                    </label>
+
+                    <label className="block text-sm font-medium text-gray-700">
+                      اختار صورة
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={async (event) => {
+                          const file = event.target.files?.[0];
+                          if (!file) return;
+                          setNewPhoto("");
+                          if (file.size > 10 * 1024 * 1024) {
+                            toast.error(
+                              "حجم الصورة لازم يكون أقل من 10 ميجابايت.",
+                            );
+                            event.target.value = "";
                             return;
                           }
-                          saveMemories(
-                            memories.filter((item) => item.id !== memory.id),
-                          );
+                          try {
+                            setNewPhoto(await resizePhoto(file));
+                          } catch (error) {
+                            console.error(
+                              "Could not read the selected photo:",
+                              error,
+                            );
+                            toast.error("تعذر فتح الصورة. اختار صورة تانية.");
+                          }
                         }}
-                        className="shrink-0 rounded-full px-3 py-2 text-sm font-semibold text-rose-600 hover:bg-rose-100"
-                      >
-                        حذف
-                      </button>
-                    </div>
-                  ))}
-                  {memories.length === 0 && (
-                    <p className="py-6 text-center text-sm text-gray-500">
-                      ❤️ لسه مفيش ذكريات. ضيف أول صورة من فوق
+                        className="mt-2 block w-full rounded-2xl border border-pink-100 bg-white p-3 text-sm file:mr-3 file:rounded-full file:border-0 file:bg-pink-100 file:px-4 file:py-2 file:text-pink-700"
+                      />
+                    </label>
+
+                    {newPhoto && (
+                      <img
+                        src={newPhoto}
+                        alt="معاينة الصورة الجديدة"
+                        className="h-48 w-full rounded-2xl object-cover"
+                      />
+                    )}
+
+                    <button
+                      type="submit"
+                      className="w-full rounded-full bg-pink-500 py-3 font-semibold text-white transition hover:bg-pink-600"
+                    >
+                      إضافة للذكريات ＋
+                    </button>
+                    <p className="text-xs text-gray-500">
+                      الصور بتتصغر تلقائيًا وبتتحفظ على نفس الجهاز والمتصفح.
                     </p>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <div className="col-span-12 ">
-                <div className="card w-auto bg-white/70 p-4 gap-3 my-3 rounded-3xl shadow flex flex-col flex-wrap mx-auto backdrop-blur-sm shadow-pink-100/50 px-7 py-3">
-                  <h2 dir="rtl" className="mb-3 text-pink-600">
-                    الي حبيبتي ❤
+                  </form>
+
+                  <h2 className="mb-4 text-lg font-bold text-gray-800">
+                    تعديل الذكريات الحالية ({memories.length})
                   </h2>
-                  <h3 dir="rtl">
-                    دي هدية صغيرة ليكي يا كوكيز عشان نملاها بصورنا طول أيامنا
-                    اللي جايه وأحنا مع بعض يا حبيبتي 🍪♥️♾️
-                  </h3>
-
-                  <p className="text-sm text-gray-700">
-                    🤏❤️ كل اللي هتشوفيه نبذه صغننه عن حبي ليكي
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50 mt-8">
-                  <p className="text-sm text-pink-400 font-semibold">
-                    For Us 🌺
-                  </p>
-
-                  <h3 className="text-sm my-4 text-gray-800">
-                    عملتلك المكان ده عشان يحفظ أجمل لحظاتنا وصورنا وكلامنا
-                    <p>
-                      ونرجعله دايماً نفتكر ونبتسم، إنتي أجمل حاجة حصلتلي، وربنا
-                      يديمك في حياتي يا روحي
-                    </p>
-                  </h3>
-
-                  <p className="my-3">🥰❤️</p>
-
-                  <span className="font-serif text-pink-800">
-                    " You 'll Never Walk Alone " 👫♥️
-                  </span>
-                </div>
-
-                <div className="my-3">
-                  <h3 className="font-bold">Our Story 📖</h3>
-                </div>
-
-                <div className="flex flex-col gap-5">
-                  <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
-                    <div className="my-2">
-                      <span className="px-3 rounded-2xl bg-pink-500 text-white">
-                        01/09/2026
-                      </span>
-                    </div>
-
-                    <h3 className="my-2.5">اليوم اللي قلتلك فيه بحبك</h3>
-
-                    <p className="text-sm text-gray-700 flex flex-col leading-9  ">
-                      <span>
-                        أهم يوم ف حياتي و لحظة دخول السرور قلبي و يومها عرفت إني
-                        إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
-                      </span>
-
-                      <p className="my-8">
-                        قبلت بكِ وزوجتك نفسي لبقية أنفاس حياتي و سأعيش معك العمر
-                        كله و أكون لكِ سنداً و حامياً في السراء والضراء و في
-                        أعنف المعارك محاربً لا يخشى شيئ إلا الله، لن أترك يديكي
-                        أبداً و سوف أفعل كل ما في وسعى لأفوز بكِ و أنالكِ يا
-                        عمري الماضي والحاضر و المستقبل، قلتها و سأقولها ثانية،
-                        سأفوز بكِ و سأفعل المستحيل لأنالك يا حبيبة عمري و فتاة
-                        أحلامي، أحبك من كل أعماق أعماق أعماق قلبي يا آنيسه روحي
-                        <p>
-                          و شريان قلبي النابض، بكِ أستآنث وبكِ أقوى وبتشجيعك
-                          اكون ما نريد.
-                          <p>🥹🌸🍪</p>
-                        </p>
-                        <p className="mt-5">
-                          {" "}
-                          🥹💍🫂♥️♥️- أحبكك بشدة يا زوجتي العزيزة
-                        </p>
-                      </p>
-                    </p>
-                  </div>
-                  <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
-                    <div className="my-2">
-                      <span className="px-3 rounded-2xl bg-pink-500 text-white">
-                        01-11-2026
-                      </span>
-                    </div>
-
-                    <h3 className="my-2.5">أول يوم شوفتك فيه</h3>
-
-                    <span className="text-sm text-gray-700">
-                      مكنتش عارف إن اليوم ده هيبقي أهم يوم في حياتي.. بس قلبي
-                      كان عارف
-                    </span>
-                  </div>
-
-                  <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50 ">
-                    <div className="my-2">
-                      <span className="px-3 rounded-2xl bg-pink-500 text-white">
-                        01/09/2026
-                      </span>
-                    </div>
-
-                    <div className="h-100">
-                      <img
-                        src="./assets/ramadan.jpg"
-                        alt=""
-                        className="h-full w-full object-cover rounded-2xl"
-                      />
-                    </div>
-
-                    <div className="mt-3">
-                      <span className="text-gray-600 text-sm">
-                        ♥️ مش محتاج أتمنى حاجة تاني.. إنتي كل اللي بتمناه
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className=" bg-white/70 p-4 backdrop-blur-sm rounded-3xl">
-                    <div className="overflow-hidden">
-                      <img
-                        src="./assets/WhatsApp Image 2026-10-23 at 10.27.57 PM.jpg"
-                        alt=""
-                        className="h-auto w-full object-contain rounded-2xl"
-                      />
-                    </div>
-
-                    <div className="mt-3" dir="rtl">
-                      <h3>
-                        لم تكن مجرد رسائل، بل كانت قطعًا صغيرة من حكاية أحب أن
-                        تستمر إلى الأبد و تحمل حبًا أكبر من أن تصفه
-                        الكلمات.♥️♾️🫂
-                      </h3>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-center gap-5">
-                    <div className="w-25 ">
-                      <img src="./assets/sticker.png" alt="" />
-                    </div>
-                    <div className="w-25 ">
-                      <img src="./assets/sticker.png" alt="" />
-                    </div>
-                  </div>
-
-                  <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
-                    <div className="my-2">
-                      <span className="px-3 rounded-2xl bg-pink-500 text-white">
-                        01-11-2026
-                      </span>
-                    </div>
-
-                    <div className="h-100">
-                      <img
-                        src="./assets/ramadan2.jpg"
-                        alt=""
-                        className="h-full w-full object-cover rounded-2xl"
-                      />
-                    </div>
-
-                    <div className="mt-3">
-                      <span className="text-gray-600 text-sm">
-                        🌸🍪🥺أحببتُ الحياةَ حين أحببتكِ
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Our Dreams */}
-
-                <div className="col-span-2 w-full mt-8 mb-5">
-                  <div className="p-6 rounded-3xl bg-white/70 backdrop-blur-sm shadow shadow-pink-100/50">
-                    <p className="text-sm text-pink-400 font-semibold">
-                      Our Dreams Together ❤️
-                    </p>
-
-                    <h2 className="text-xl font-semibold text-gray-800 mt-2">
-                      أحلام نفسي أحققها معاكي
-                    </h2>
-
-                    <p className="text-xs text-gray-500 mt-2">
-                      ❤️ مش مجرد أحلام.. دي حاجات نفسي نعيشها سوا
-                    </p>
-
-                    {/* Progress */}
-                    <div className="mt-6">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs text-gray-500">
-                          Our progress
-                        </span>
-
-                        <span className="text-xs font-semibold text-pink-500">
-                          {goals.filter((goal) => goal.completed).length} /{" "}
-                          {goals.length}
-                        </span>
-                      </div>
-
-                      <div className="w-full h-2 bg-pink-100 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-pink-400 rounded-full transition-all duration-500"
-                          style={{
-                            width: `${
-                              (goals.filter((goal) => goal.completed).length /
-                                goals.length) *
-                              100
-                            }%`,
-                          }}
+                  <div className="space-y-3">
+                    {memories.map((memory) => (
+                      <div
+                        key={memory.id}
+                        className="flex items-center gap-3 rounded-2xl bg-pink-50/70 p-3"
+                      >
+                        <img
+                          src={memory.image}
+                          alt=""
+                          className="h-16 w-16 shrink-0 rounded-xl object-cover"
                         />
-                      </div>
-                    </div>
-
-                    {/* Goals */}
-                    <div className="mt-6 flex flex-col gap-3">
-                      {goals.map((goal) => (
-                        <div
-                          key={goal.id}
-                          onClick={() => {
-                            setGoals((prev) =>
-                              prev.map((item) =>
-                                item.id === goal.id
-                                  ? {
-                                      ...item,
-                                      completed: !item.completed,
-                                    }
+                        <input
+                          aria-label="عنوان الذكرى"
+                          defaultValue={memory.title}
+                          maxLength={160}
+                          onBlur={(event) => {
+                            const title = event.target.value.trim();
+                            if (!title) {
+                              event.target.value = memory.title;
+                              toast.error("عنوان الذكرى ماينفعش يكون فاضي.");
+                              return;
+                            }
+                            if (title === memory.title) return;
+                            saveMemories(
+                              memories.map((item) =>
+                                item.id === memory.id
+                                  ? { ...item, title }
                                   : item,
                               ),
                             );
                           }}
-                          className={`flex items-center gap-3 p-4 rounded-2xl cursor-pointer transition-all duration-300 ${
-                            goal.completed
-                              ? "bg-pink-100"
-                              : "bg-white/60 hover:bg-pink-50"
-                          }`}
-                          dir="rtl"
+                          className="min-w-0 flex-1 rounded-xl border border-pink-100 bg-white px-3 py-2 text-sm outline-none focus:border-pink-300"
+                        />
+                        <button
+                          type="button"
+                          aria-label="حذف الذكرى"
+                          onClick={() => {
+                            if (!window.confirm("تأكيد حذف الذكرى؟")) {
+                              return;
+                            }
+                            saveMemories(
+                              memories.filter((item) => item.id !== memory.id),
+                            );
+                          }}
+                          className="shrink-0 rounded-full px-3 py-2 text-sm font-semibold text-rose-600 hover:bg-rose-100"
                         >
-                          <div
-                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                              goal.completed
-                                ? "bg-pink-400 border-pink-400 text-white"
-                                : "border-pink-300"
-                            }`}
-                          >
-                            {goal.completed && "✓"}
-                          </div>
-
-                          <span
-                            className={`text-sm ${
-                              goal.completed
-                                ? "line-through text-gray-400"
-                                : "text-gray-700"
-                            }`}
-                          >
-                            {goal.text}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                          حذف
+                        </button>
+                      </div>
+                    ))}
+                    {memories.length === 0 && (
+                      <p className="py-6 text-center text-sm text-gray-500">
+                        ❤️ لسه مفيش ذكريات. ضيف أول صورة من فوق
+                      </p>
+                    )}
                   </div>
                 </div>
+              ) : (
+                <div className="col-span-12 ">
+                  <div className="card w-auto bg-white/70 p-4 gap-3 my-3 rounded-3xl shadow flex flex-col flex-wrap mx-auto backdrop-blur-sm shadow-pink-100/50 px-7 py-3">
+                    <h2 dir="rtl" className="mb-3 text-pink-600">
+                      الي حبيبتي ❤
+                    </h2>
+                    <h3 dir="rtl">
+                      دي هدية صغيرة ليكي يا كوكيز عشان نملاها بصورنا طول أيامنا
+                      اللي جايه وأحنا مع بعض يا حبيبتي 🍪♥️♾️
+                    </h3>
 
-                <p className="my-5 text-2xl font-semibold " dir="trl">
-                  ✨ ذكرياتنا مع بعض
-                </p>
-
-                {!isDashboard && (
-                  <div className="flex justify-end mb-4 mt-3">
-                    <button
-                      type="button"
-                      onClick={() => setIsDashboard(true)}
-                      className="rounded-full bg-white/80 px-5 py-2 text-sm font-semibold text-pink-600 shadow-sm hover:bg-white"
-                    >
-                      إدارة الصور ✨
-                    </button>
+                    <p className="text-sm text-gray-700">
+                      🤏❤️ كل اللي هتشوفيه نبذه صغننه عن حبي ليكي
+                    </p>
                   </div>
-                )}
 
-                <div className="grid grid-cols-1 gap-3 my-7">
-                  {memories.map((memory) => (
-                    <div
-                      key={memory.id}
-                      className="rounded-3xl bg-white/70 p-2.5 shadow-sm shadow-pink-100 backdrop-blur-sm"
-                    >
-                      <div className="w-full overflow-hidden rounded-2xl">
-                        <img
-                          src={memory.image}
-                          alt={memory.title}
-                          className="block h-auto w-full object-contain"
-                        />
+                  <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50 mt-8">
+                    <p className="text-sm text-pink-400 font-semibold">
+                      For Us 🌺
+                    </p>
+
+                    <h3 className="text-sm my-4 text-gray-800">
+                      عملتلك المكان ده عشان يحفظ أجمل لحظاتنا وصورنا وكلامنا
+                      <p>
+                        ونرجعله دايماً نفتكر ونبتسم، إنتي أجمل حاجة حصلتلي،
+                        وربنا يديمك في حياتي يا روحي
+                      </p>
+                    </h3>
+
+                    <p className="my-3">🥰❤️</p>
+
+                    <span className="font-serif text-pink-800">
+                      " You 'll Never Walk Alone " 👫♥️
+                    </span>
+                  </div>
+
+                  <div className="my-3">
+                    <h3 className="font-bold">Our Story 📖</h3>
+                  </div>
+
+                  <div className="flex flex-col gap-5">
+                    <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
+                      <div className="my-2">
+                        <span className="px-3 rounded-2xl bg-pink-500 text-white">
+                          01/09/2026
+                        </span>
                       </div>
-                      <p className="mt-3 text-center text-lg leading-5 text-gray-700 whitespace-pre-line">
-                        {memory.title}
+
+                      <h3 className="my-2.5">اليوم اللي قلتلك فيه بحبك</h3>
+
+                      <p className="text-sm text-gray-700 flex flex-col leading-9  ">
+                        <span>
+                          أهم يوم ف حياتي و لحظة دخول السرور قلبي و يومها عرفت
+                          إني إنتصرت وفُزت بكِ يا عمري <p>🥹👫♥️♥️</p>
+                        </span>
+
+                        <p className="my-8">
+                          قبلت بكِ وزوجتك نفسي لبقية أنفاس حياتي و سأعيش معك
+                          العمر كله و أكون لكِ سنداً و حامياً في السراء والضراء
+                          و في أعنف المعارك محاربً لا يخشى شيئ إلا الله، لن أترك
+                          يديكي أبداً و سوف أفعل كل ما في وسعى لأفوز بكِ و
+                          أنالكِ يا عمري الماضي والحاضر و المستقبل، قلتها و
+                          سأقولها ثانية، سأفوز بكِ و سأفعل المستحيل لأنالك يا
+                          حبيبة عمري و فتاة أحلامي، أحبك من كل أعماق أعماق أعماق
+                          قلبي يا آنيسه روحي
+                          <p>
+                            و شريان قلبي النابض، بكِ أستآنث وبكِ أقوى وبتشجيعك
+                            اكون ما نريد.
+                            <p>🥹🌸🍪</p>
+                          </p>
+                          <p className="mt-5">
+                            {" "}
+                            🥹💍🫂♥️♥️- أحبكك بشدة يا زوجتي العزيزة
+                          </p>
+                        </p>
                       </p>
                     </div>
-                  ))}
+                    <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
+                      <div className="my-2">
+                        <span className="px-3 rounded-2xl bg-pink-500 text-white">
+                          01-11-2026
+                        </span>
+                      </div>
+
+                      <h3 className="my-2.5">أول يوم شوفتك فيه</h3>
+
+                      <span className="text-sm text-gray-700">
+                        مكنتش عارف إن اليوم ده هيبقي أهم يوم في حياتي.. بس قلبي
+                        كان عارف
+                      </span>
+                    </div>
+
+                    <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50 ">
+                      <div className="my-2">
+                        <span className="px-3 rounded-2xl bg-pink-500 text-white">
+                          01/09/2026
+                        </span>
+                      </div>
+
+                      <div className="h-100">
+                        <img
+                          src="./assets/WhatsApp Image 2026-10-09 at 12.15.02 AM.jpg"
+                          alt=""
+                          className="h-full w-full object-cover rounded-2xl"
+                        />
+                      </div>
+
+                      <div className="mt-3">
+                        <span className="text-gray-600 text-sm">
+                          ♥️ مش محتاج أتمنى حاجة تاني.. إنتي كل اللي بتمناه
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className=" bg-white/70 p-4 backdrop-blur-sm rounded-3xl">
+                      <div className="overflow-hidden">
+                        <img
+                          src="./assets/WhatsApp Image 2026-10-23 at 10.27.57 PM.jpg"
+                          alt=""
+                          className="h-auto w-full object-contain rounded-2xl"
+                        />
+                      </div>
+
+                      <div className="mt-3" dir="rtl">
+                        <h3>
+                          لم تكن مجرد رسائل، بل كانت قطعًا صغيرة من حكاية أحب أن
+                          تستمر إلى الأبد و تحمل حبًا أكبر من أن تصفه
+                          الكلمات.♥️♾️🫂
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-center gap-5">
+                      <div className="w-25 ">
+                        <img src="./assets/sticker.png" alt="" />
+                      </div>
+                      <div className="w-25 ">
+                        <img src="./assets/sticker.png" alt="" />
+                      </div>
+                    </div>
+
+                    <div className="p-4 rounded-3xl backdrop-blur-sm bg-white/70 shadow shadow-pink-100/50">
+                      <div className="my-2">
+                        <span className="px-3 rounded-2xl bg-pink-500 text-white">
+                          01-11-2026
+                        </span>
+                      </div>
+
+                      <div className="h-100">
+                        <img
+                          src="./assets/WhatsApp Image 2026-10-09 at 4.36.59 PM.jpg"
+                          alt=""
+                          className="h-full w-full object-cover rounded-2xl"
+                        />
+                      </div>
+
+                      <div className="mt-3">
+                        <span className="text-gray-600 text-sm">
+                          🌸🍪🥺أحببتُ الحياةَ حين أحببتكِ
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Our Dreams */}
+
+                  <div className="col-span-2 w-full mt-8 mb-5">
+                    <div className="p-6 rounded-3xl bg-white/70 backdrop-blur-sm shadow shadow-pink-100/50">
+                      <p className="text-sm text-pink-400 font-semibold">
+                        Our Dreams Together ❤️
+                      </p>
+
+                      <h2 className="text-xl font-semibold text-gray-800 mt-2">
+                        أحلام نفسي أحققها معاكي
+                      </h2>
+
+                      <p className="text-xs text-gray-500 mt-2">
+                        ❤️ مش مجرد أحلام.. دي حاجات نفسي نعيشها سوا
+                      </p>
+
+                      {/* Progress */}
+                      <div className="mt-6">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-xs text-gray-500">
+                            Our progress
+                          </span>
+
+                          <span className="text-xs font-semibold text-pink-500">
+                            {goals.filter((goal) => goal.completed).length} /{" "}
+                            {goals.length}
+                          </span>
+                        </div>
+
+                        <div className="w-full h-2 bg-pink-100 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-pink-400 rounded-full transition-all duration-500"
+                            style={{
+                              width: `${
+                                (goals.filter((goal) => goal.completed).length /
+                                  goals.length) *
+                                100
+                              }%`,
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Goals */}
+                      <div className="mt-6 flex flex-col gap-3">
+                        {goals.map((goal) => (
+                          <div
+                            key={goal.id}
+                            onClick={() => {
+                              setGoals((prev) =>
+                                prev.map((item) =>
+                                  item.id === goal.id
+                                    ? {
+                                        ...item,
+                                        completed: !item.completed,
+                                      }
+                                    : item,
+                                ),
+                              );
+                            }}
+                            className={`flex items-center gap-3 p-4 rounded-2xl cursor-pointer transition-all duration-300 ${
+                              goal.completed
+                                ? "bg-pink-100"
+                                : "bg-white/60 hover:bg-pink-50"
+                            }`}
+                            dir="rtl"
+                          >
+                            <div
+                              className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                                goal.completed
+                                  ? "bg-pink-400 border-pink-400 text-white"
+                                  : "border-pink-300"
+                              }`}
+                            >
+                              {goal.completed && "✓"}
+                            </div>
+
+                            <span
+                              className={`text-sm ${
+                                goal.completed
+                                  ? "line-through text-gray-400"
+                                  : "text-gray-700"
+                              }`}
+                            >
+                              {goal.text}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="my-5 text-2xl font-semibold " dir="trl">
+                    ✨ ذكرياتنا مع بعض
+                  </p>
+
+                  {!isDashboard && (
+                    <div className="flex justify-end mb-4 mt-3">
+                      <button
+                        type="button"
+                        onClick={() => setIsDashboard(true)}
+                        className="rounded-full bg-white/80 px-5 py-2 text-sm font-semibold text-pink-600 shadow-sm hover:bg-white"
+                      >
+                        إدارة الصور ✨
+                      </button>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 gap-3 my-7">
+                    {memories.map((memory) => (
+                      <div
+                        key={memory.id}
+                        className="rounded-3xl bg-white/70 p-2.5 shadow-sm shadow-pink-100 backdrop-blur-sm"
+                      >
+                        <div className="w-full overflow-hidden rounded-2xl">
+                          <img
+                            src={memory.image}
+                            alt={memory.title}
+                            className="block h-auto w-full object-contain"
+                          />
+                        </div>
+                        <p className="mt-3 text-center text-lg leading-5 text-gray-700 whitespace-pre-line">
+                          {memory.title}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+              )}
+            </div>
+          ) : (
+            <div className="w-full max-w-sm mx-auto">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <p className="text-xs tracking-[0.3em] text-rose-400 font-medium mb-3">
+                  Where Our Memories Live Forever.
+                </p>
+
+                <h1 className="text-xl font-semibold text-gray-800">
+                  ♥️🌸 انتي أجملُ صدفةٍ في حياتي.
+                </h1>
+
+                <p className="text-sm text-gray-400 mt-3">
+                  A little secret is waiting for you...
+                </p>
               </div>
-            )}
-          </div>
-        ) : (
-          <div className="w-full max-w-sm mx-auto">
-            {/* Header */}
-            <div className="text-center mb-8">
-              <p className="text-xs tracking-[0.3em] text-rose-400 font-medium mb-3">
-                Where Our Memories Live Forever.
-              </p>
 
-              <h1 className="text-xl font-semibold text-gray-800">
-                ♥️🌸 انتي أجملُ صدفةٍ في حياتي.
-              </h1>
+              {/* Card */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
 
-              <p className="text-sm text-gray-400 mt-3">
-                A little secret is waiting for you...
+                  if (password === "01-09-2026") {
+                    setUnlocked(true);
+                    audioRef.current?.play().catch((error) => {
+                      console.error("تعذر تشغيل الأغنية:", error);
+                    });
+
+                    toast.success("Two Hearts, One Beautiful Story", {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: false,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                      transition: Bounce,
+                    });
+                  } else {
+                    alert("Incorrect password. Please try again.");
+                  }
+                }}
+                className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl shadow-pink-100/50 px-7 py-8"
+              >
+                <h2 className="text-center text-sm font-medium text-gray-500 mb-6">
+                  ENTER THE SECRET WORD 🔑
+                </h2>
+
+                <input
+                  type="password"
+                  placeholder="password"
+                  className="w-full py-3 bg-transparent border-0 border-b-2 border-gray-200 outline-none text-center text-gray-700 placeholder:text-gray-600 focus:border-rose-400 transition-colors"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <button
+                  type="submit"
+                  className="w-full mt-8 py-3 rounded-full bg-rose-400 text-white font-medium shadow-md shadow-rose-200 hover:bg-rose-500 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                >
+                  Unlock 🔓
+                </button>
+              </form>
+
+              {/* Footer */}
+              <p className="text-center text-xs text-gray-400 mt-6">
+                Made with love ❤️
               </p>
             </div>
-
-            {/* Card */}
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-
-                if (password === "01-09-2026") {
-                  setUnlocked(true);
-                  audioRef.current?.play().catch((error) => {
-                    console.error("تعذر تشغيل الأغنية:", error);
-                  });
-
-                  toast.success("Two Hearts, One Beautiful Story", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
-                  });
-                } else {
-                  alert("Incorrect password. Please try again.");
-                }
-              }}
-              className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl shadow-pink-100/50 px-7 py-8"
-            >
-              <h2 className="text-center text-sm font-medium text-gray-500 mb-6">
-                ENTER THE SECRET WORD 🔑
-              </h2>
-
-              <input
-                type="password"
-                placeholder="password"
-                className="w-full py-3 bg-transparent border-0 border-b-2 border-gray-200 outline-none text-center text-gray-700 placeholder:text-gray-600 focus:border-rose-400 transition-colors"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-
-              <button
-                type="submit"
-                className="w-full mt-8 py-3 rounded-full bg-rose-400 text-white font-medium shadow-md shadow-rose-200 hover:bg-rose-500 hover:shadow-lg transition-all duration-300 cursor-pointer"
-              >
-                Unlock 🔓
-              </button>
-            </form>
-
-            {/* Footer */}
-            <p className="text-center text-xs text-gray-400 mt-6">
-              Made with love ❤️
-            </p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+
+      <div>
+        <ScrollY />
+      </div>
+    </>
   );
 }
