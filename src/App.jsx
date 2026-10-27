@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import { IoHeartSharp } from "react-icons/io5";
 import { Bounce, toast } from "react-toastify";
-import { FaCookie } from "react-icons/fa";
+import { FaCookie, FaEyeSlash, FaRegEye } from "react-icons/fa";
 import ScrollY from "./components/scrollY/ScrollY";
 
 const initialMemories = [];
@@ -52,6 +52,8 @@ export default function App() {
   const [unlocked, setUnlocked] = useState(
     JSON.parse(localStorage.getItem("unlocked")),
   );
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [password, setPassword] = useState("");
   const audioRef = useRef(null);
@@ -679,7 +681,17 @@ export default function App() {
                       transition: Bounce,
                     });
                   } else {
-                    alert("Incorrect password. Please try again.");
+                    toast.error("Oops , Try Again", {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: false,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                      transition: Bounce,
+                    });
                   }
                 }}
                 className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl shadow-pink-100/50 px-7 py-8"
@@ -688,12 +700,21 @@ export default function App() {
                   ENTER THE SECRET WORD 🔑
                 </h2>
 
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="w-full py-3 bg-transparent border-0 border-b-2 border-gray-200 outline-none text-center text-gray-700 placeholder:text-gray-600 focus:border-rose-400 transition-colors"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="password"
+                    className="w-full py-3 bg-transparent border-0 border-b-2 border-gray-200 outline-none text-center text-gray-700 placeholder:text-gray-600 focus:border-rose-400 transition-colors"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+
+                  <span
+                    className="absolute right-0 bottom-4 text-gray-600 cursor-pointer"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaRegEye /> : <FaEyeSlash />}
+                  </span>
+                </div>
 
                 <button
                   type="submit"
