@@ -448,7 +448,7 @@ export default function App() {
 
                       <div className="h-100">
                         <img
-                          src="./assets/WhatsApp Image 2026-10-09 at 12.15.02 AM.jpg"
+                          src="./assets/WhatsApp Image 2026-10-24 at 4.58.14 PM.jpg"
                           alt=""
                           className="h-full w-full object-cover rounded-2xl"
                         />
@@ -464,7 +464,7 @@ export default function App() {
                     <div className=" bg-white/70 p-4 backdrop-blur-sm rounded-3xl">
                       <div className="overflow-hidden">
                         <img
-                          src="./assets/WhatsApp Image 2026-10-23 at 10.27.57 PM.jpg"
+                          src="./assets/WhatsApp Image 2026-10-24 at 4.58.13 PM.jpg"
                           alt=""
                           className="h-auto w-full object-contain rounded-2xl"
                         />
@@ -497,7 +497,7 @@ export default function App() {
 
                       <div className="h-100">
                         <img
-                          src="./assets/WhatsApp Image 2026-10-09 at 4.36.59 PM.jpg"
+                          src="./assets/WhatsApp Image 2026-10-27 at 4.05.01 PM.jpg"
                           alt=""
                           className="h-full w-full object-cover rounded-2xl"
                         />
